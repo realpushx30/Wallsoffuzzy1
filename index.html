@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WallsOfFuzzy</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0d1117;
+color:white;
+}
+
+header{
+text-align:center;
+padding:40px 20px;
+}
+
+header h1{
+font-size:50px;
+color:#7dd3fc;
+}
+
+header p{
+margin-top:10px;
+color:#9ca3af;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+.wallpapers{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+margin-top:30px;
+}
+
+.card{
+background:#161b22;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:400px;
+object-fit:cover;
+}
+
+.card-content{
+padding:20px;
+}
+
+.card h2{
+margin-bottom:15px;
+}
+
+.download-btn{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#7dd3fc;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+.download-btn:hover{
+background:#38bdf8;
+}
+
+.comment-section{
+margin-top:60px;
+background:#161b22;
+padding:25px;
+border-radius:20px;
+}
+
+.comment-section h2{
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+margin-bottom:15px;
+background:#0d1117;
+color:white;
+}
+
+.comment-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#7dd3fc;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+.comments{
+margin-top:20px;
+}
+
+.comment{
+background:#0d1117;
+padding:15px;
+border-radius:12px;
+margin-bottom:10px;
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#9ca3af;
+margin-top:50px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>WallsOfFuzzy</h1>
+<p>3D Anime Wallpapers • Comment To Unlock Downloads</p>
+</header>
+
+<div class="container">
+
+<div class="wallpapers">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h2>Neon Samurai</h2>
+
+<button class="download-btn"
+onclick="downloadWallpaper('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop')">
+Download
+</button>
+
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h2>Cyber Tokyo</h2>
+
+<button class="download-btn"
+onclick="downloadWallpaper('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop')">
+Download
+</button>
+
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+<h2>Night Warrior</h2>
+
+<button class="download-btn"
+onclick="downloadWallpaper('https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1200&auto=format&fit=crop')">
+Download
+</button>
+
+</div>
+</div>
+
+</div>
+
+<div class="comment-section">
+
+<h2>Comment To Unlock 1 Download</h2>
+
+<input type="text"
+id="commentInput"
+placeholder="Write a comment...">
+
+<button class="comment-btn"
+onclick="postComment()">
+Post Comment
+</button>
+
+<div class="comments"
+id="comments">
+</div>
+
+</div>
+
+</div>
+
+<footer>
+Made With ❤️ By WallsOfFuzzy
+</footer>
+
+<script>
+
+let downloads=0;
+
+function postComment(){
+
+let input=document.getElementById('commentInput');
+
+let comments=document.getElementById('comments');
+
+if(input.value.trim()===''){
+alert('Write a comment first.');
+return;
+}
+
+downloads++;
+
+let div=document.createElement('div');
+
+div.className='comment';
+
+div.innerText=input.value;
+
+comments.prepend(div);
+
+input.value='';
+
+alert('1 download unlocked!');
+
+}
+
+function downloadWallpaper(url){
+
+if(downloads<=0){
+alert('Comment once to unlock download.');
+return;
+}
+
+downloads--;
+
+let a=document.createElement('a');
+
+a.href=url;
+
+a.download='wallpaper.jpg';
+
+a.click();
+
+}
+
+</script>
+
+</body>
+</html>
